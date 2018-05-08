@@ -1,37 +1,57 @@
-import './Header.css'; 
-import React, {Component } from 'react'; 
+import './Header.css';
+import React, { Component } from 'react';
 
-
+import LoginBar from './LoginBar/Login'
+import Navigation from './Navigation'
+import Logo from './Logo'
+import LoginMenu from './LoginBar/LoginMenu'
+import SignUpMenu from './LoginBar/signUpMenu'
 
 export default class Header extends Component {
-    render(){
+    state = {
+        loginActive: false,
+        signupActive: false,
+    }
+
+    loginHandler = () => {
+        const log = this.state.loginActive
+        this.setState({ loginActive: !log })
+        this.state.signupActive === false;
+    }
+
+    signupHandler = () => {
+        const sign = this.state.signupActive
+        this.setState({ signupActive: !sign })
+        this.state.loginActive === false
+    }
+
+    render() {
         return (
-            <div className = "header">
-                <div className = "logo"><a href="">logo</a></div>
-                <div className= "header_main"> 
-                <ul className = "header_nav">
-                    <li><a href="">Главная</a></li>
-                    <li><a href="">Каталог</a></li>
-                    <li><a href="">Контакты</a></li>
-                </ul>
-                <LoginBar />
-                </div>
+            <div className="header">
+                <Logo />
+                <Navigation />
+                <LoginBar
+                    login={this.loginHandler}
+                    signup={this.signupHandler}
+                />
+
+                {this.state.loginActive === true && this.state.signupActive === false ?
+                    <div className="loginMenu">
+                        <LoginMenu
+                            loginClose={this.loginHandler}
+                        />
+                    </div> : null}
+
+                {this.state.signupActive === true && this.state.loginActive === false ?
+                    <div className="loginMenu">
+                        <SignUpMenu
+                            signupClose={this.signupHandler}
+                        />
+                    </div> : null}
             </div>
         );
     }
 }
 
-class LoginBar extends Component{
-    render(){
-        return(
-            <div className = "loginBar">
-                <ul>
-                    <li><a href="">Вход</a></li>
-                    <li><a href="">Регистрация</a></li>
-                </ul>
-            </div>
-        )
-    }
-}
 
 

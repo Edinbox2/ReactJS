@@ -1,36 +1,36 @@
-a{
+a {
     text-decoration: none;
     color: black;
 }
 
-.header{
-    background: azure; 
-    border: 1px solid silver; 
-    padding: 10px 20px; 
+.header {
+    background: azure;
+    border: 1px solid silver;
+    padding: 10px 20px;
     display: flex;
     justify-content: space-between;
-    max-width: 1200px; 
+    max-width: 1200px;
     margin: 0 auto;
     align-items: center;
-
+    position: relative;
 }
 
-.logo{
+.logo {
     font-size: 20px;
     text-transform: uppercase;
 }
 
-.header_main{
+.header_main {
     display: flex;
-    
 }
 
-.header_nav li{ 
+.header_nav li {
     display: inline-block;
-    padding: 0 10px;     
+    padding: 0 10px;
+    font-weight: 700;
 }
 
-.loginBar li{
-    display: inline-block;
-    padding: 0 10px; 
+.header_nav li:hover a {
+    color: red;
 }
+
