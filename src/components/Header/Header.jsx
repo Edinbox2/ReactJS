@@ -1,37 +1,49 @@
-import './Header.css'; 
-import React, {Component } from 'react'; 
+import './Header.css';
+import React, { Component } from 'react';
 
-
+import LoginBar from './Login'
+import Navigation from './Navigation'
+import Logo from './Logo'
 
 export default class Header extends Component {
-    render(){
+    state = {
+        signup: false,
+        login: false        
+    }
+
+    signupHandler = () => {
+        this.setState({
+            signup: true,
+            login: false
+        })
+        console.log(this.state.signup)
+    }
+
+    loginHandler = () => {
+        this.setState({
+            signup: false,
+            login: true
+        })
+        console.log(this.state.login)
+    }
+
+
+    render() {
+     
         return (
-            <div className = "header">
-                <div className = "logo"><a href="">logo</a></div>
-                <div className= "header_main"> 
-                <ul className = "header_nav">
-                    <li><a href="">Главная</a></li>
-                    <li><a href="">Каталог</a></li>
-                    <li><a href="">Контакты</a></li>
-                </ul>
-                <LoginBar />
-                </div>
+
+            <div className="header">
+                <Logo />
+                <Navigation />
+                <LoginBar
+                    login={this.loginHandler}
+                    signup={this.signupHandler}
+                />
+
             </div>
         );
     }
 }
 
-class LoginBar extends Component{
-    render(){
-        return(
-            <div className = "loginBar">
-                <ul>
-                    <li><a href="">Вход</a></li>
-                    <li><a href="">Регистрация</a></li>
-                </ul>
-            </div>
-        )
-    }
-}
 
 
