@@ -4,12 +4,17 @@ import React, { Component } from 'react';
 import LoginBar from './Login'
 import Navigation from './Navigation'
 import Logo from './Logo'
+import LoginMenu from './LoginMenu'
 
 export default class Header extends Component {
     state = {
-        signup: false,
-        login: false        
+        loginNotActive: false,
+        signupNotActive: false,
+        loginActive: true,
+        signupActive: true,
+
     }
+
 
     signupHandler = () => {
         this.setState({
@@ -20,16 +25,14 @@ export default class Header extends Component {
     }
 
     loginHandler = () => {
-        this.setState({
-            signup: false,
-            login: true
-        })
-        console.log(this.state.login)
+        const log = this.state.loginNotActive
+        this.setState({ loginNotActive: !log })
+
     }
 
 
     render() {
-     
+
         return (
 
             <div className="header">
@@ -39,7 +42,12 @@ export default class Header extends Component {
                     login={this.loginHandler}
                     signup={this.signupHandler}
                 />
-
+                {this.state.loginNotActive === true ?
+                    <div className="loginMenu">
+                        <LoginMenu
+                            loginClose={this.loginHandler}
+                        />
+                    </div> : null}
             </div>
         );
     }
